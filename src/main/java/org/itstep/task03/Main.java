@@ -34,6 +34,8 @@ package org.itstep.task03;
 public class Main {
     public static void main(String[] args) {
         // FIXME: здесь пример использования класса
-
+        Country Ukraine=new Country();
+        Ukraine.input();
+        Ukraine.output();
     }
 }
