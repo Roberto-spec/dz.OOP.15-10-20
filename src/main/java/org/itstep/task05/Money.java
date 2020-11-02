@@ -35,11 +35,37 @@ public class Money {
     public void setKopecks(byte kopecks) {
         this.kopecks = kopecks;
     }
-    public void simplify(){
-        if((int)getKopecks()>=100){
-            setHryvnia(getHryvnia()+1);
-            setKopecks((byte)((int)getKopecks()-100));
-        }
+    public void simplify_plus(int c){
+        while(c>=100) {
 
+            setHryvnia(getHryvnia() + 1);
+            c-=100;
+        }
+        setKopecks((byte)c);
+    }
+    public void simplify_minus(int c){
+        while(c<0) {
+
+            setHryvnia(getHryvnia() + 1);
+            c-=100;
+        }
+        setKopecks((byte)c);
+    }
+    public Money addition(Money a){
+        Money b=new Money();
+        b.setHryvnia(getHryvnia()+a.getHryvnia());
+        int c=(int)getKopecks()+(int)a.getKopecks();
+
+        b.simplify_plus(c);
+        return b;
+    }
+
+    public Money subtraction(Money a){
+        Money b=new Money();
+        b.setHryvnia(getHryvnia()-a.getHryvnia());
+        int c=(int)getKopecks()-(int)a.getKopecks();
+
+        b.simplify_minus(c);
+        return b;
     }
 }
