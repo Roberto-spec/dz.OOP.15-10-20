@@ -68,4 +68,26 @@ public class Money {
         b.simplify_minus(c);
         return b;
     }
+    public long to_long(){
+        long c;
+        c=(int)getKopecks()+(getHryvnia()*100);
+
+        return c;
+    }
+    public void to_money(long c){
+
+        setKopecks((byte)(c%100));
+        setHryvnia(c-(int)getKopecks());
+
+    }
+
+    public Money multiplication(Money a){
+
+
+
+        long c=to_long()+a.to_long();
+        to_money(c);
+
+        return this;
+    }
 }
