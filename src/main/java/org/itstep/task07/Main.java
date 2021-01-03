@@ -22,6 +22,9 @@ package org.itstep.task07;
  */
 public class Main {
     public static void main(String[] args) {
-
+    Complex a=new Complex(3,4);
+    Complex b= new Complex(5,-3);
+    Complex c=a.plus(b);
+    System.out.println(c);
     }
 }

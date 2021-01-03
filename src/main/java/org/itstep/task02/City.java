@@ -29,6 +29,7 @@ public class City {
         this.code = code;
     }
 
+
     public City() {
         this.name = "default";
         this.region = "default";
@@ -85,39 +86,8 @@ public class City {
     public void setCode(String code) {
         this.code = code;
     }
-    public void output(){
-        System.out.println("City: "+getName());
-        System.out.println("Region: "+getRegion());
-        System.out.println("Contry: "+getCountry());
-        System.out.println("Inhabitants: "+getInhabitants()+" peoples");
-        System.out.println("Index: "+getIndex());
-        System.out.println("Code: "+getCode());
-
-    }
-    public void input(){
-        java.util.Scanner scaner=new Scanner(System.in);
-        System.out.println("Enter name City: ");
-        System.out.print(">_");
-        setName(scaner.next());
-        System.out.println("Enter Region City: ");
-        System.out.print(">_");
-        setRegion(scaner.next());
-        System.out.println("Enter Contry City: ");
-        System.out.print(">_");
-        setCountry(scaner.next());
-        System.out.println("Enter Inhabitants City: ");
-        System.out.print(">_");
-        setInhabitants(scaner.nextInt());
-        System.out.println("Enter Index City: ");
-        System.out.print(">_");
-        setIndex(scaner.next());
-
-        System.out.println("Enter Code City: ");
-        System.out.print(">_");
-        setCode(scaner.next());
 
 
-    }
 
 
 

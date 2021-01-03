@@ -4,90 +4,105 @@ public class Money {
     private long hryvnia;
     private byte kopecks;
 
-    public Money(long hryvnia, int kopecks) {
+    public Money(long hryvnia, byte kopecks) {
         this.hryvnia = hryvnia;
-        this.kopecks = (byte)kopecks;
+        this.kopecks = kopecks;
     }
-    public Money(long hryvnia) {
+    Money(long hryvnia){
         this.hryvnia = hryvnia;
         this.kopecks = (byte)0;
     }
-    public Money() {
-        hryvnia=0;
-        kopecks=(byte)0;
+    Money(){
+        this.hryvnia = 0;
+        this.kopecks = (byte)0;
+    }
+    public long getHryvnia() {
+        return hryvnia;
+    }
+    public void setHryvnia(long hryvnia) {
+        this.hryvnia = hryvnia;
+    }
+    public byte getKopecks() {
+        return kopecks;
+    }
+    public void setKopecks(byte kopecks) {
+        this.kopecks = kopecks;
     }
     public void show(){
         System.out.println(getHryvnia()+","+(int)getKopecks());
 
     }
-    public long getHryvnia() {
-        return hryvnia;
-    }
+//* - сложение (addition).
+//            * - вычитание (subtraction),
+// * - умножение (multiplication),
+// * - деление на дробное число (division),
+// * - умножение на дробное (метод multiply) число
+// * - операции сравнения (метод equals) возвращает boolean.
 
-    public void setHryvnia(long hryvnia) {
-        this.hryvnia = hryvnia;
+    public boolean equals(Money right){
+        if(getHryvnia()== right.getHryvnia()&&(int)(getKopecks())==(int)(right.getKopecks())) return true;
+        return false;
     }
-
-    public byte getKopecks() {
-        return kopecks;
-    }
-
-    public void setKopecks(byte kopecks) {
-        this.kopecks = kopecks;
-    }
-    public void simplify_plus(int c){
-        while(c>=100) {
-
-            setHryvnia(getHryvnia() + 1);
-            c-=100;
+    public Money multiply(double d){
+        Money money=new Money();
+        long k=(long)((((double)getKopecks())+((double)(getHryvnia())*100))*d);
+        long h=0;
+        while(k>=100){
+            k-=100;
+            h+=1;
         }
-        setKopecks((byte)c);
+        money.setHryvnia(h);
+        money.setKopecks((byte)k);
+        return money;
     }
-    public void simplify_minus(int c){
-        while(c<0) {
-
-            setHryvnia(getHryvnia() + 1);
-            c-=100;
+    public Money division(double d){
+        Money money=new Money();
+        long k=(long)((((double)getKopecks())+((double)(getHryvnia())*100))/d);
+        long h=0;
+        while(k>=100){
+            k-=100;
+            h+=1;
         }
-        setKopecks((byte)c);
+        money.setHryvnia(h);
+        money.setKopecks((byte)k);
+        return money;
     }
-    public Money addition(Money a){
-        Money b=new Money();
-        b.setHryvnia(getHryvnia()+a.getHryvnia());
-        int c=(int)getKopecks()+(int)a.getKopecks();
-
-        b.simplify_plus(c);
-        return b;
+    public Money multiplication(Money right){
+        Money money=new Money();
+        int k=(int)getKopecks()*(int)right.getKopecks();
+        long h=getHryvnia()*right.getHryvnia();
+        while(k>=100){
+            k-=100;
+            h+=1;
+        }
+        money.setHryvnia(h);
+        money.setKopecks((byte)k);
+        return money;
+    }
+    public Money subtraction(Money right){
+        Money money=new Money();
+        int k=(int)getKopecks()-(int)right.getKopecks();
+        long h=getHryvnia()-right.getHryvnia();
+        while((k+100)<100){
+            k+=100;
+            h-=1;
+        }
+        money.setHryvnia(h);
+        money.setKopecks((byte)k);
+        return money;
+    }
+    public Money addition(Money right){
+        Money money=new Money();
+        int k=(int)getKopecks()+(int)right.getKopecks();
+        long h=getHryvnia()+right.getHryvnia();
+        while(k>=100){
+            k-=100;
+            h+=1;
+        }
+        money.setHryvnia(h);
+        money.setKopecks((byte)k);
+        return money;
     }
 
-    public Money subtraction(Money a){
-        Money b=new Money();
-        b.setHryvnia(getHryvnia()-a.getHryvnia());
-        int c=(int)getKopecks()-(int)a.getKopecks();
 
-        b.simplify_minus(c);
-        return b;
-    }
-    public long to_long(){
-        long c;
-        c=(int)getKopecks()+(getHryvnia()*100);
-
-        return c;
-    }
-    public void to_money(long c){
-
-        setKopecks((byte)(c%100));
-        setHryvnia(c-(int)getKopecks());
-
-    }
-
-    public Money multiplication(Money a){
-
-
-
-        long c=to_long()+a.to_long();
-        to_money(c);
-
-        return this;
-    }
 }

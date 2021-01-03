@@ -1,5 +1,8 @@
 package org.itstep.task03;
 
+import org.itstep.Input;
+import org.itstep.Output;
+
 /**
  * Задание 3
  * <p>
@@ -35,7 +38,9 @@ public class Main {
     public static void main(String[] args) {
         // FIXME: здесь пример использования класса
         Country Ukraine=new Country();
-        Ukraine.input();
-        Ukraine.output();
+        Input input=new Input();
+        Output output=new Output();
+        Ukraine=input.input_country();
+        output.output_Country(Ukraine);
     }
 }

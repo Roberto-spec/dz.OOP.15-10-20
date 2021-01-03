@@ -31,10 +31,7 @@ package org.itstep.task05;
  */
 public class Main {
     public static void main(String[] args) {
-        Money a=new Money(45,86);
-        Money b=new Money(45,86);
-        Money c= a.subtraction(b);
-        c.show();
+
 
     }
 }

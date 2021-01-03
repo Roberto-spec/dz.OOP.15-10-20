@@ -1,5 +1,8 @@
 package org.itstep.task02;
 
+import org.itstep.Input;
+import org.itstep.Output;
+
 /**
  * Задание 2
  * <p>
@@ -22,8 +25,11 @@ package org.itstep.task02;
 public class Main {
     public static void main(String[] args) {
         // FIXME: здесь пример использования класса
-        City Dnipro=new City();
-        Dnipro.input();
-        Dnipro.output();
+
+        Input input=new Input();
+        Output output=new Output();
+        City Dnipro=input.input_City();
+        output.output_city(Dnipro);
+
     }
 }
